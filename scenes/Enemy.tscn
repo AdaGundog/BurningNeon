@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://de80r2te6s62y"]
+
+[ext_resource type="Script" uid="uid://dal1fo1x8f4qu" path="res://scripts/enemy.gd" id="1_mpr68"]
+[ext_resource type="Texture2D" uid="uid://cadjbk1ikl8um" path="res://assets/Enemies/ucan.robot.png" id="2_55jtl"]
+[ext_resource type="PackedScene" uid="uid://15m481pmtp07" path="res://scenes/enemy_bullet.tscn" id="2_mpr68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
+size = Vector2(40, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpr68"]
+atlas = ExtResource("2_55jtl")
+region = Rect2(0, 0, 34, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gvst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpr68")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+script = ExtResource("1_mpr68")
+health = 40
+min_distance = 100.0
+shooting_range = 200.0
+bullet_scene = ExtResource("2_mpr68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, -1.5)
+shape = SubResource("RectangleShape2D_55jtl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(11, -1)
+sprite_frames = SubResource("SpriteFrames_3gvst")
+animation = &"idle"

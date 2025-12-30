@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds4v4rurlq6gs"]
+
+[ext_resource type="Script" uid="uid://daarq2iqnxxgd" path="res://scripts/gun.gd" id="1_ic5qw"]
+[ext_resource type="PackedScene" uid="uid://jwpaxlltn4sr" path="res://scenes/bullet.tscn" id="2_dstt8"]
+[ext_resource type="Texture2D" uid="uid://dniis1xnp5uae" path="res://assets/Guns/Icon29_20.png" id="3_4hv56"]
+[ext_resource type="Texture2D" uid="uid://b6x3ubxq7d2c5" path="res://assets/Crosshairs/crosshair013.png" id="3_dstt8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_og67c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4hv56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gp1hk"]
+radius = 11.0
+
+[node name="BlueGun" type="Area2D" groups=["gun"]]
+collision_mask = 2
+script = ExtResource("1_ic5qw")
+base_damage = 10
+bullet_scene = ExtResource("2_dstt8")
+knockback_force = 200.0
+crosshair_texture = ExtResource("3_dstt8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.59375, 0.59375)
+sprite_frames = SubResource("SpriteFrames_og67c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["gun"]]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_gp1hk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://hsasd67r3xfm"]
+
+[node name="AmmoCount" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="AmmoLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

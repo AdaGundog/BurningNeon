@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc1qovwoowcy3"
+path="res://.godot/imported/Pink Floyd - Any Colour You Like (2023 Remaster).mp3-a45f8af1f7c6d45481f8839737730e72.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Pink Floyd - Any Colour You Like (2023 Remaster).mp3"
+dest_files=["res://.godot/imported/Pink Floyd - Any Colour You Like (2023 Remaster).mp3-a45f8af1f7c6d45481f8839737730e72.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://vri60bv43b5w"]
+
+[ext_resource type="Script" uid="uid://daarq2iqnxxgd" path="res://scripts/gun.gd" id="1_ukdja"]
+[ext_resource type="PackedScene" uid="uid://cdv2bbvky2vr3" path="res://scenes/sniper_bullet.tscn" id="2_0ejog"]
+[ext_resource type="Texture2D" uid="uid://qlq3bi0uhvoy" path="res://assets/Crosshairs/crosshair057.png" id="3_0ejog"]
+[ext_resource type="Texture2D" uid="uid://c4jasjnibwa07" path="res://assets/Guns/Icon29_21.png" id="4_0ejog"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rk6qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0ejog")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gp1hk"]
+radius = 14.035668
+
+[node name="SniperGun" type="Area2D" groups=["gun"]]
+collision_mask = 2
+script = ExtResource("1_ukdja")
+is_sniper = true
+mag_size = 4
+reload_time = 7.0
+fire_rate = 1.0
+hip_fire_spread = 30.0
+bullet_scene = ExtResource("2_0ejog")
+knockback_force = 500.0
+crosshair_texture = ExtResource("3_0ejog")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.594, 0.594)
+sprite_frames = SubResource("SpriteFrames_rk6qr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_gp1hk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cadrklokc3axy"]
+
+[ext_resource type="Script" uid="uid://dcj76ba8o231c" path="res://scripts/bullet.gd" id="1_ujapr"]
+[ext_resource type="Texture2D" uid="uid://dwqvkliqohp8r" path="res://assets/Guns/01.png" id="2_a3tnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
+radius = 6.0
+
+[node name="BlueBullet" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_ujapr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v8qja")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4338843, 0.4338843)
+texture = ExtResource("2_a3tnh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
