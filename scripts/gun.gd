@@ -127,11 +127,15 @@ func _on_body_exited(body: Node2D) -> void:
 func pick_up(body: Node2D):
 	var gun_hold = body.get_node_or_null("GunPoint")
 	if gun_hold:
+		# 1. Clear the range variable FIRST
 		player_in_range = null
+		
+		# 2. If we already have a gun, drop it
 		if gun_hold.get_child_count() > 0:
 			var old_gun = gun_hold.get_child(0)
 			drop_weapon(old_gun)
 		
+		# 3. Equip the new gun
 		is_equipped = true
 		current_ammo = randi_range(1, mag_size)
 		
@@ -155,9 +159,21 @@ func reparent_to_player(new_parent: Node2D):
 func drop_weapon(weapon_node):
 	weapon_node.is_equipped = false
 	weapon_node.player_in_range = null 
+	
+	# Move to world root
 	if weapon_node.get_parent():
 		weapon_node.get_parent().remove_child(weapon_node)
 	get_tree().root.add_child(weapon_node)
-	weapon_node.global_position = global_position + Vector2(30, 0)
-	weapon_node.set_deferred("monitoring", true)
+	
+	# Position it slightly away from the player
+	weapon_node.global_position = global_position + Vector2(40, 0).rotated(rotation)
+	
+	# --- THE FIX ---
+	# Turn off monitoring for a tiny moment so it doesn't 
+	# instantly re-detect the player you are standing on.
+	weapon_node.set_deferred("monitoring", false)
 	weapon_node.set_deferred("monitorable", true)
+	
+	# Wait 0.2 seconds before allowing it to be picked up again
+	await get_tree().create_timer(0.2).timeout
+	weapon_node.set_deferred("monitoring", true)

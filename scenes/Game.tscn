@@ -237,11 +237,11 @@ position = Vector2(164, -62)
 [node name="CanvasLayer" parent="." instance=ExtResource("4_s0nni")]
 
 [node name="SniperGun" parent="." instance=ExtResource("8_g4kob")]
-position = Vector2(64, 36)
+position = Vector2(81, 45)
 is_sniper = false
 
 [node name="RedGun" parent="." instance=ExtResource("5_s0nni")]
-position = Vector2(137, 16)
+position = Vector2(207, 15)
 
 [node name="BlueGun" parent="." instance=ExtResource("6_aug50")]
-position = Vector2(54, -20)
+position = Vector2(-10, -42)
