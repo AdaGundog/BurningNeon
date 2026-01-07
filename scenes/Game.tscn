@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d1v06gqx3vaq3"]
+[gd_scene load_steps=19 format=4 uid="uid://d1v06gqx3vaq3"]
 
 [ext_resource type="PackedScene" uid="uid://dxw1brxpythhl" path="res://scenes/player.tscn" id="1_ibkli"]
 [ext_resource type="Texture2D" uid="uid://b6x3ubxq7d2c5" path="res://assets/Crosshairs/crosshair013.png" id="2_aug50"]
@@ -8,7 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://ds4v4rurlq6gs" path="res://scenes/blue_gun.tscn" id="6_aug50"]
 [ext_resource type="PackedScene" uid="uid://de80r2te6s62y" path="res://scenes/Enemy.tscn" id="8_400sg"]
 [ext_resource type="PackedScene" uid="uid://vri60bv43b5w" path="res://scenes/sniper_gun.tscn" id="8_g4kob"]
+[ext_resource type="PackedScene" uid="uid://8go8um0c0e10" path="res://scenes/weapon_buy.tscn" id="10_3xj3m"]
 [ext_resource type="Texture2D" uid="uid://6cx647kt0854" path="res://assets/Tilesets/pixel-cyberpunk-interior.png" id="10_qy1jj"]
+[ext_resource type="PackedScene" uid="uid://dxoim7rvuu25b" path="res://scenes/door.tscn" id="11_3xj3m"]
+[ext_resource type="PackedScene" uid="uid://dj4onbsg7ha6w" path="res://scenes/round_manager.tscn" id="12_mcffj"]
+[ext_resource type="Script" uid="uid://dc33jakx2mdpf" path="res://scripts/enemy_type.gd" id="13_7ua8r"]
+[ext_resource type="Resource" uid="uid://btf52ueb82yfr" path="res://BasicEnemy.tres" id="14_r7sob"]
+[ext_resource type="PackedScene" uid="uid://noighwn34mvo" path="res://scenes/pause_menu.tscn" id="15_r7sob"]
+
+[sub_resource type="Environment" id="Environment_qy1jj"]
+background_mode = 3
+background_canvas_max_layer = 10
+ambient_light_energy = 0.0
+tonemap_mode = 2
+tonemap_exposure = 0.3
+glow_enabled = true
+glow_hdr_threshold = 1.03
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g4kob"]
 texture = ExtResource("10_qy1jj")
@@ -204,6 +219,9 @@ sources/0 = SubResource("TileSetAtlasSource_g4kob")
 
 [node name="Game" type="Node2D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qy1jj")
+
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -10
 tile_map_data = PackedByteArray("AAACAP//AAACAAIAAAADAP//AAACAAIAAAACAP7/AAACAAMAAAADAP7/AAACAAMAAAADAAEAAAABAAIAAAADAAAAAAACAAMAAAACAAAAAAAAAAMAAAACAAEAAAACAAIAAAAEAAEAAAACAAIAAAAFAAEAAAACAAMAAAAGAAEAAAACAAIAAAAGAAAAAAACAAIAAAAFAAAAAAABAAIAAAAEAAAAAAACAAIAAAAEAP//AAACAAIAAAAFAP//AAACAAIAAAAGAP//AAAAAAMAAAAGAP7/AAAAAAMAAAAFAP7/AAACAAIAAAAEAP7/AAACAAMAAAAFAP3/AAACAAIAAAAGAP3/AAACAAIAAAAEAP3/AAAAAAMAAAADAP3/AAACAAIAAAACAP3/AAACAAIAAAABAP3/AAACAAIAAAAAAP3/AAACAAIAAAD///3/AAAAAAMAAAD///7/AAAAAAMAAAD+//7/AAAAAAMAAAAAAP7/AAACAAIAAAABAP7/AAACAAMAAAD+//3/AAACAAIAAAD/////AAACAAIAAAAAAP//AAACAAMAAAD+////AAAAAAMAAAABAP//AAACAAMAAAABAAAAAAAAAAMAAAAAAAAAAAACAAMAAAD//wAAAAABAAIAAAD+/wAAAAABAAIAAAD+/wEAAAAAAAMAAAD//wEAAAABAAIAAAAAAAEAAAABAAIAAAABAAEAAAAAAAMAAAAHAP7/AAAAAAMAAAAHAP//AAAAAAMAAAAHAAAAAAAAAAMAAAAHAP3/AAABAAIAAAAHAAEAAAABAAIAAAAHAAIAAAABAAIAAAAGAAIAAAABAAIAAAAFAAIAAAABAAIAAAAEAAIAAAABAAIAAAADAAIAAAABAAIAAAACAAIAAAABAAIAAAABAAIAAAABAAIAAAAAAAIAAAABAAIAAAD//wIAAAABAAIAAAD+/wIAAAABAAIAAAD9/wIAAAABAAIAAAD9/wEAAAABAAIAAAD9/wAAAAABAAIAAAD9////AAABAAIAAAD9//7/AAABAAIAAAD9//3/AAABAAIAAAD9//z/AAABAAIAAAD+//z/AAABAAIAAAD///z/AAABAAIAAAAAAPz/AAABAAIAAAABAPz/AAABAAIAAAACAPz/AAABAAIAAAADAPz/AAABAAIAAAAEAPz/AAABAAIAAAAFAPz/AAABAAIAAAAGAPz/AAABAAIAAAAHAPz/AAABAAIAAAAIAPz/AAABAAIAAAAIAP3/AAABAAIAAAAIAP7/AAABAAIAAAAIAP//AAABAAIAAAAIAAAAAAABAAIAAAAIAAEAAAACAAIAAAAIAAIAAAABAAMAAAA=")
@@ -219,11 +237,13 @@ rendering_quadrant_size = 32
 
 [node name="Player" parent="." instance=ExtResource("1_ibkli")]
 position = Vector2(85, 1)
+max_health = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.5, 2.5)
 
 [node name="Crosshair" type="Sprite2D" parent="Player"]
+process_mode = 3
 z_index = 100
 position = Vector2(33.999985, -31.999996)
 scale = Vector2(0.13194445, 0.13194445)
@@ -245,3 +265,27 @@ position = Vector2(207, 15)
 
 [node name="BlueGun" parent="." instance=ExtResource("6_aug50")]
 position = Vector2(-10, -42)
+
+[node name="WeaponBuy" parent="." instance=ExtResource("10_3xj3m")]
+self_modulate = Color(1.353, 1.353, 1.353, 1)
+position = Vector2(157, -140)
+weapon_to_give = ExtResource("5_s0nni")
+price = 10
+weapon_name = "Red Gun"
+
+[node name="Door" parent="." instance=ExtResource("11_3xj3m")]
+position = Vector2(64, -159)
+scale = Vector2(1.253555, 1.253555)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["SpawnPoints"]]
+position = Vector2(389, -191)
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["SpawnPoints"]]
+position = Vector2(255, -113)
+
+[node name="RoundManager" parent="." instance=ExtResource("12_mcffj")]
+position = Vector2(-172, 3)
+enemy_pool = Array[ExtResource("13_7ua8r")]([ExtResource("14_r7sob")])
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_r7sob")]
+visible = false

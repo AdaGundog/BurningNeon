@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://de80r2te6s62y"]
+[gd_scene load_steps=8 format=3 uid="uid://de80r2te6s62y"]
 
 [ext_resource type="Script" uid="uid://dal1fo1x8f4qu" path="res://scripts/enemy.gd" id="1_mpr68"]
 [ext_resource type="Texture2D" uid="uid://cadjbk1ikl8um" path="res://assets/Enemies/ucan.robot.png" id="2_55jtl"]
+[ext_resource type="PackedScene" uid="uid://bbfvqy2yvk8se" path="res://scenes/blue_money.tscn" id="2_ft8do"]
 [ext_resource type="PackedScene" uid="uid://15m481pmtp07" path="res://scenes/enemy_bullet.tscn" id="2_mpr68"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
@@ -26,6 +27,8 @@ animations = [{
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 script = ExtResource("1_mpr68")
+blue_money = ExtResource("2_ft8do")
+money_drop_amount = 20
 health = 40
 min_distance = 100.0
 shooting_range = 200.0

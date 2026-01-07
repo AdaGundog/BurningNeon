@@ -148,11 +148,18 @@ func pick_up(body: Node2D):
 		call_deferred("reparent_to_player", gun_hold)
 
 func reparent_to_player(new_parent: Node2D):
+	# THIS IS THE FIX: Only remove if it actually has a parent
 	if get_parent():
 		get_parent().remove_child(self)
+	
+	# Now add it to the player's GunPoint
 	new_parent.add_child(self)
+	
+	# Reset position and rotation so it sits perfectly in the hand
 	position = Vector2.ZERO
 	rotation = 0
+	
+	# Use set_deferred to avoid physics errors
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 
@@ -160,20 +167,22 @@ func drop_weapon(weapon_node):
 	weapon_node.is_equipped = false
 	weapon_node.player_in_range = null 
 	
-	# Move to world root
+	# 1. Store the CURRENT global position of the gun before unparenting
+	var drop_pos = global_position 
+	
+	# 2. Remove from player
 	if weapon_node.get_parent():
 		weapon_node.get_parent().remove_child(weapon_node)
+	
+	# 3. Add to the main level
 	get_tree().root.add_child(weapon_node)
 	
-	# Position it slightly away from the player
-	weapon_node.global_position = global_position + Vector2(40, 0).rotated(rotation)
+	# 4. Set the position back to where the player was
+	weapon_node.global_position = drop_pos
 	
-	# --- THE FIX ---
-	# Turn off monitoring for a tiny moment so it doesn't 
-	# instantly re-detect the player you are standing on.
-	weapon_node.set_deferred("monitoring", false)
-	weapon_node.set_deferred("monitorable", true)
+	# 5. Optional: Offset it so it's not directly under the player's feet
+	# This moves it 40 pixels to the right of where it was
+	weapon_node.global_position += Vector2(40, 0).rotated(rotation)
 	
-	# Wait 0.2 seconds before allowing it to be picked up again
-	await get_tree().create_timer(0.2).timeout
 	weapon_node.set_deferred("monitoring", true)
+	weapon_node.set_deferred("monitorable", true)

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbfvqy2yvk8se"]
+
+[ext_resource type="Texture2D" uid="uid://sys312a2plcv" path="res://assets/Drops/blue_crystal_0000.png" id="1_d1yw8"]
+[ext_resource type="Script" uid="uid://bwyxloybxfc8" path="res://scripts/blue_money.gd" id="1_o07x2"]
+[ext_resource type="Texture2D" uid="uid://dypbqaqq5kve8" path="res://assets/Drops/blue_crystal_0001.png" id="2_o07x2"]
+[ext_resource type="Texture2D" uid="uid://bi3d6nvucqeok" path="res://assets/Drops/blue_crystal_0002.png" id="3_grfny"]
+[ext_resource type="Texture2D" uid="uid://jfii37nalcui" path="res://assets/Drops/blue_crystal_0003.png" id="4_wyk8f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7a14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d1yw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o07x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_grfny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wyk8f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1yw8"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grfny"]
+radius = 19.235384
+
+[node name="BlueMoney" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_o07x2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.24170968, 0.2400001)
+sprite_frames = SubResource("SpriteFrames_g7a14")
+autoplay = "default"
+frame = 3
+frame_progress = 0.016405536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.9604645e-08, 2.3841858e-07)
+scale = Vector2(0.40723693, 0.9700674)
+shape = SubResource("CapsuleShape2D_d1yw8")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_grfny")

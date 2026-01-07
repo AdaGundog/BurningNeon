@@ -1,4 +1,6 @@
 extends CharacterBody2D
+@export var blue_money: PackedScene # Drag Coin.tscn here in the Inspector
+@export var money_drop_amount: int = 50
 
 @export_group("Stats")
 @export var health: int = 3
@@ -65,4 +67,12 @@ func take_damage(amount: int) -> void:
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color.WHITE
 	if health <= 0:
-		queue_free()
+		die() # Call the die function instead of queue_free()
+
+func die():
+	if blue_money:
+		var c = blue_money.instantiate()
+		get_tree().root.add_child(c)
+		c.global_position = global_position
+		c.value = money_drop_amount # Pass the value to the coin
+	queue_free()

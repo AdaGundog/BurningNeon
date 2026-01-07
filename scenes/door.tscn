@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxoim7rvuu25b"]
+
+[ext_resource type="Script" uid="uid://o0a8ebycgyns" path="res://scripts/door.gd" id="1_uvdjg"]
+[ext_resource type="Texture2D" uid="uid://6cx647kt0854" path="res://assets/Tilesets/pixel-cyberpunk-interior.png" id="2_83dcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la1wf"]
+size = Vector2(41, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18pbm"]
+size = Vector2(40, 45)
+
+[sub_resource type="SystemFont" id="SystemFont_uvdjg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_83dcw"]
+font = SubResource("SystemFont_uvdjg")
+font_color = Color(0, 0.58205354, 0.95748645, 1)
+
+[node name="Door" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_uvdjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 32)
+shape = SubResource("RectangleShape2D_la1wf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_83dcw")
+region_enabled = true
+region_rect = Rect2(195, 242, 42, 46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_18pbm")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -36.000004
+offset_top = 5.0
+offset_right = 73.0
+offset_bottom = 28.0
+scale = Vector2(0.2400006, 0.2400006)
+theme_override_colors/font_color = Color(0.0012836471, 0, 0.753651, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ada asafasfda"
+label_settings = SubResource("LabelSettings_83dcw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
