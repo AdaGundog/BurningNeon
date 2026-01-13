@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxw1brxpythhl"]
+[gd_scene load_steps=23 format=3 uid="uid://dxw1brxpythhl"]
 
 [ext_resource type="Texture2D" uid="uid://bme7sen3d7gwi" path="res://assets/Player/spr_StrikerIdle_strip.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://biidni6plxkyf" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dsd0wjybsus4x" path="res://assets/Player/spr_StrikerRun_strip.png" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://deckqdqtm8rsw" path="res://assets/Audio/Sound Effects - Walking on Solid Metal.mp3" id="4_dqkch"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_3vyb7")
@@ -133,7 +134,7 @@ animations = [{
 radius = 15.033297
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
-scale = Vector2(1.4400021, 1.4400021)
+scale = Vector2(1.4434988, 1.4400021)
 collision_layer = 2
 script = ExtResource("1_g2els")
 
@@ -149,3 +150,8 @@ shape = SubResource("CircleShape2D_nvl01")
 
 [node name="GunPoint" type="Node2D" parent="."]
 position = Vector2(1, -15)
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_dqkch")
+volume_db = 7.313

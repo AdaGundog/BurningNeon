@@ -11,6 +11,7 @@ const DODGE_DURATION = 0.2
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var hud = get_tree().root.find_child("CanvasLayer", true, false)
+@onready var footsteps_player: AudioStreamPlayer2D = $Footsteps
 
 var speed_modifier: float = 1.0
 var is_dodging: bool = false
@@ -24,6 +25,7 @@ func _ready():
 
 func _physics_process(_delta: float) -> void:
 	# 1. Check for Dodge with Cooldown
+	handle_footsteps_sound()
 	if Input.is_action_just_pressed("dodge") and not is_dodging and can_dodge:
 		start_dodge()
 
@@ -99,3 +101,11 @@ func start_dodge():
 	# Ready to dodge again!
 	can_dodge = true
 	_animated_sprite.modulate = Color.WHITE # Back to normal
+
+func handle_footsteps_sound():
+	# Check if the player is actually moving
+	if velocity.length() > 10: 
+		if not footsteps_player.playing:
+			footsteps_player.play()
+	else:
+		footsteps_player.stop()

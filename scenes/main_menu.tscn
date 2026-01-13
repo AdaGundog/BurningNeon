@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dut1fp1rq8bs8"]
+[gd_scene load_steps=15 format=3 uid="uid://dut1fp1rq8bs8"]
 
 [ext_resource type="Script" uid="uid://llg4lqqnxpu5" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://mujpsb2llngf" path="res://assets/UI/dvd-64.png" id="2_ekxnf"]
 [ext_resource type="AudioStream" uid="uid://cc1qovwoowcy3" path="res://assets/Audio/Pink Floyd - Any Colour You Like (2023 Remaster).mp3" id="3_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://cedbmtgxymuwj" path="res://assets/Audio/DVDSFX ‐ Clipchamp ile yapıldı.mp3" id="4_wu84c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
 
@@ -62,3 +63,8 @@ expand_icon = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="DVDButton"]
 stream = ExtResource("3_bqqt6")
 autoplay = true
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(2, -1)
+stream = ExtResource("4_wu84c")
+volume_db = 24.0

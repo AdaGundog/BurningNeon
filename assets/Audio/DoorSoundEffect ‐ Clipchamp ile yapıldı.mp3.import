@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwufdg56e3yly"
+path="res://.godot/imported/DoorSoundEffect ‐ Clipchamp ile yapıldı.mp3-e7d8807d0005a1ae627fac06fa6c2d54.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/DoorSoundEffect ‐ Clipchamp ile yapıldı.mp3"
+dest_files=["res://.godot/imported/DoorSoundEffect ‐ Clipchamp ile yapıldı.mp3-e7d8807d0005a1ae627fac06fa6c2d54.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

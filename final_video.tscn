@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://hgsegkh7uac"]
+
+[ext_resource type="VideoStream" uid="uid://drla5dihh0d26" path="res://assets/Audio/videoplayback.ogv" id="1_uwx5t"]
+
+[node name="FinalVideo" type="VideoStreamPlayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_uwx5t")
+autoplay = true

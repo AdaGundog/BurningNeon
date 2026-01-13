@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1cs678273j3n"]
+
+[ext_resource type="Texture2D" uid="uid://ogmirytmlfmg" path="res://assets/Drops/Icon14_39.png" id="1_amusn"]
+[ext_resource type="Script" uid="uid://bhak76y1jl7k5" path="res://scenes/items.gd" id="1_qcy8m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wecpe"]
+
+[node name="FireCrystal" type="Area2D"]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(0.9943419, 1)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_qcy8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(0.49769574, 0.49769574)
+texture = ExtResource("1_amusn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+shape = SubResource("CircleShape2D_wecpe")

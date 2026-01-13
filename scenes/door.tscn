@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxoim7rvuu25b"]
+[gd_scene load_steps=9 format=3 uid="uid://dxoim7rvuu25b"]
 
 [ext_resource type="Script" uid="uid://o0a8ebycgyns" path="res://scripts/door.gd" id="1_uvdjg"]
 [ext_resource type="Texture2D" uid="uid://6cx647kt0854" path="res://assets/Tilesets/pixel-cyberpunk-interior.png" id="2_83dcw"]
+[ext_resource type="AudioStream" uid="uid://dwufdg56e3yly" path="res://assets/Audio/DoorSoundEffect ‐ Clipchamp ile yapıldı.mp3" id="2_la1wf"]
+[ext_resource type="AudioStream" uid="uid://cwr5mpvwfpl5k" path="res://assets/Audio/yetersiz-bakiye-iett.mp3" id="3_la1wf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la1wf"]
 size = Vector2(41, 17)
@@ -10,6 +12,7 @@ size = Vector2(41, 17)
 size = Vector2(40, 45)
 
 [sub_resource type="SystemFont" id="SystemFont_uvdjg"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_83dcw"]
 font = SubResource("SystemFont_uvdjg")
@@ -19,6 +22,8 @@ font_color = Color(0, 0.58205354, 0.95748645, 1)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_uvdjg")
+open_sound = ExtResource("2_la1wf")
+keep_closed_sound = ExtResource("3_la1wf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 32)

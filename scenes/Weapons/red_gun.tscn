@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp1k2v08uedkf"]
+[gd_scene load_steps=8 format=3 uid="uid://bp1k2v08uedkf"]
 
 [ext_resource type="Script" uid="uid://daarq2iqnxxgd" path="res://scripts/gun.gd" id="1_2xw3u"]
 [ext_resource type="PackedScene" uid="uid://d5cll57h01dd" path="res://scenes/red_bullet.tscn" id="2_2xw3u"]
 [ext_resource type="Texture2D" uid="uid://dkxmmprmthj6v" path="res://assets/Guns/Icon29_11.png" id="3_2xw3u"]
+[ext_resource type="Resource" uid="uid://dnmxhabjm0niu" path="res://RedGunUpgrade.tres" id="3_b0ey8"]
 [ext_resource type="Texture2D" uid="uid://0msjiwbbju47" path="res://assets/Crosshairs/crosshair051.png" id="3_j8m6k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_og67c"]
@@ -26,6 +27,7 @@ base_damage = 5
 mag_size = 23
 reload_time = 4.0
 bullet_scene = ExtResource("2_2xw3u")
+upgrade_data = ExtResource("3_b0ey8")
 knockback_force = 250.0
 crosshair_texture = ExtResource("3_j8m6k")
 

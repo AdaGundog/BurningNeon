@@ -1,12 +1,16 @@
 extends Area2D
+@export var open_sound: AudioStream
+@export var keep_closed_sound: AudioStream
 
 @export var door_price: int = 750
 @export var door_name: String = "Debris"
+# NEW: Match this to the group name of the spawn points in the next room
+@export var zone_to_unlock: String = "Zone2" 
 
 var player_in_zone = null
 
 func _ready():
-	$Label.hide() # Hide price by default
+	$Label.hide()
 	$Label.text = "Press [E] to clear %s [%d]" % [door_name, door_price]
 
 func _on_body_entered(body):
@@ -19,8 +23,9 @@ func _on_body_exited(body):
 		player_in_zone = null
 		$Label.hide()
 
-func _input(event):
-	if event.is_action_pressed("interact") and player_in_zone:
+func _input(_event):	
+	# Using Input.is_action_just_pressed is usually safer in _input(event)
+	if Input.is_action_just_pressed("interact") and player_in_zone:
 		attempt_buy_door()
 
 func attempt_buy_door():
@@ -28,9 +33,14 @@ func attempt_buy_door():
 		GameSettings.add_money(-door_price)
 		open_door()
 	else:
-		# Optional: Play a "no money" sound
 		print("Not enough points!")
+		AudioManager.play_sound_at(keep_closed_sound, global_position)
+
 
 func open_door():
-	# You can add a sound effect or particles here
-	queue_free() # This deletes the door and the buy zone	
+	# Play the sound through the global manager
+	if open_sound:
+		AudioManager.play_sound_at(open_sound, global_position)
+	
+	get_tree().call_group("RoundManager", "unlock_zone", zone_to_unlock)
+	queue_free() # Now it's safe to delete immediately!

@@ -4,6 +4,7 @@ extends Area2D
 @export var weapon_to_give: PackedScene # Drag the Gun.tscn here
 @export var price: int = 500
 @export var weapon_name: String = "Sniper"
+@export var buy_sound: AudioStream
 
 var player_in_zone: Node2D = null
 
@@ -35,11 +36,13 @@ func _input(_event):
 		# Use 'Input' (Capital I) instead of 'event'
 		if Input.is_action_just_pressed("buy"):
 			if GameSettings.player_money >= price:
+
 				buy_weapon()
 			else:
 				show_not_enough_money()
 
 func buy_weapon():
+	AudioManager.play_sound_at(buy_sound, global_position)
 	GameSettings.add_money(-price)
 	
 	var new_gun = weapon_to_give.instantiate()

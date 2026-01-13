@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxsr7bv5yfwb2"]
+
+[ext_resource type="Script" uid="uid://bhak76y1jl7k5" path="res://scenes/items.gd" id="1_ytmnr"]
+[ext_resource type="Texture2D" uid="uid://dm7ba3da1mqh7" path="res://assets/Drops/Icon14_36.png" id="2_y10rp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wecpe"]
+
+[node name="Battery" type="Area2D"]
+scale = Vector2(0.9856218, 1.0494763)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ytmnr")
+material_type = "battery"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.49769574, 0.49769574)
+texture = ExtResource("2_y10rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wecpe")

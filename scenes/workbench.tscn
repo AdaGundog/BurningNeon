@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://df51f2bdue6j3"]
+
+[ext_resource type="Script" uid="uid://o4f67tpujpc0" path="res://workbench.gd" id="1_4ij56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a25do"]
+
+[node name="Workbench" type="Area2D"]
+scale = Vector2(0.99385256, 0.98881197)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_4ij56")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.016865, 2)
+shape = SubResource("RectangleShape2D_a25do")
+
+[node name="UIHint" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.23530078, 0.23530078)
+text = "ada"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

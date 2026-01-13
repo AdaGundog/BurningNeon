@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Cyberpunk2071"
-run/main_scene="res://scenes/Game.tscn"
+run/main_scene="uid://dut1fp1rq8bs8"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameSettings="*res://scripts/GameSettings.gd"
+AudioManager="*res://scripts/audio_manager.gd"
 
 [input]
 

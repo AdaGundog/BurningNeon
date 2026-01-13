@@ -1,6 +1,9 @@
 extends CharacterBody2D
 @export var blue_money: PackedScene # Drag Coin.tscn here in the Inspector
 @export var money_drop_amount: int = 50
+@export var loot_scenes: Array[PackedScene] # Drag all your material scenes here
+@export var drop_chance: float = 0.5 # 50% chance to drop something
+@export var damage_sound: AudioStream
 
 @export_group("Stats")
 @export var health: int = 3
@@ -62,6 +65,7 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func take_damage(amount: int) -> void:
+	AudioManager.play_sound_at(damage_sound, global_position)
 	health -= amount
 	modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
@@ -70,9 +74,19 @@ func take_damage(amount: int) -> void:
 		die() # Call the die function instead of queue_free()
 
 func die():
+	# Drop Money (Guaranteed)
 	if blue_money:
 		var c = blue_money.instantiate()
 		get_tree().root.add_child(c)
 		c.global_position = global_position
-		c.value = money_drop_amount # Pass the value to the coin
+		if c.has_method("set_value"): # Good practice to check
+			c.value = money_drop_amount
+
+	# Drop Random Material
+	if loot_scenes.size() > 0 and randf() <= drop_chance:
+		var random_item_scene = loot_scenes.pick_random()
+		var item = random_item_scene.instantiate()
+		get_tree().root.add_child(item)
+		item.global_position = global_position
+		
 	queue_free()

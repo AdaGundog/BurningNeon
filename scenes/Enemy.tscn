@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://de80r2te6s62y"]
+[gd_scene load_steps=13 format=3 uid="uid://de80r2te6s62y"]
 
 [ext_resource type="Script" uid="uid://dal1fo1x8f4qu" path="res://scripts/enemy.gd" id="1_mpr68"]
 [ext_resource type="Texture2D" uid="uid://cadjbk1ikl8um" path="res://assets/Enemies/ucan.robot.png" id="2_55jtl"]
 [ext_resource type="PackedScene" uid="uid://bbfvqy2yvk8se" path="res://scenes/blue_money.tscn" id="2_ft8do"]
 [ext_resource type="PackedScene" uid="uid://15m481pmtp07" path="res://scenes/enemy_bullet.tscn" id="2_mpr68"]
+[ext_resource type="PackedScene" uid="uid://cwitv3j80dktj" path="res://scenes/burning_neon.tscn" id="3_iwav8"]
+[ext_resource type="PackedScene" uid="uid://d1cs678273j3n" path="res://scenes/fire_crystal.tscn" id="4_1i2q2"]
+[ext_resource type="PackedScene" uid="uid://cxsr7bv5yfwb2" path="res://scenes/battery.tscn" id="5_ly5gv"]
+[ext_resource type="AudioStream" uid="uid://c2e8mcecj0u5k" path="res://assets/Audio/jump-climb-or-damage-sound-f-95942 (1).mp3" id="6_ly5gv"]
+[ext_resource type="AudioStream" uid="uid://c4eknbyq2j88y" path="res://assets/Audio/robot-walk-82499.mp3" id="8_1i2q2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
 size = Vector2(40, 33)
@@ -24,11 +29,14 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.50138134, 0.4818136)
 collision_layer = 4
 script = ExtResource("1_mpr68")
 blue_money = ExtResource("2_ft8do")
 money_drop_amount = 20
+loot_scenes = Array[PackedScene]([ExtResource("3_iwav8"), ExtResource("4_1i2q2"), ExtResource("5_ly5gv")])
+drop_chance = 1.0
+damage_sound = ExtResource("6_ly5gv")
 health = 40
 min_distance = 100.0
 shooting_range = 200.0
@@ -42,3 +50,8 @@ shape = SubResource("RectangleShape2D_55jtl")
 position = Vector2(11, -1)
 sprite_frames = SubResource("SpriteFrames_3gvst")
 animation = &"idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_1i2q2")
+volume_db = -2.947
+autoplay = true

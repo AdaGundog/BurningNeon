@@ -1,6 +1,7 @@
 extends Control
 
 @onready var dvd_button = $DVDButton
+@onready var click_sound: AudioStreamPlayer2D = $ClickSound
 
 @export var speed: float = 250.0
 var velocity: Vector2 = Vector2(1, 1)
@@ -58,4 +59,10 @@ func change_color():
 
 func _on_dvd_button_pressed():
 	if game_scene_path != "":
+		if has_node("ClickSound"):
+			$ClickSound.play()
+			speed = 0 # Freeze the DVD logo
+			# Wait for a specific amount of time (e.g., 0.5 seconds)
+			await get_tree().create_timer(1.30).timeout
+		
 		get_tree().change_scene_to_file(game_scene_path)

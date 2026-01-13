@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://vri60bv43b5w"]
+[gd_scene load_steps=8 format=3 uid="uid://vri60bv43b5w"]
 
 [ext_resource type="Script" uid="uid://daarq2iqnxxgd" path="res://scripts/gun.gd" id="1_ukdja"]
 [ext_resource type="PackedScene" uid="uid://cdv2bbvky2vr3" path="res://scenes/sniper_bullet.tscn" id="2_0ejog"]
 [ext_resource type="Texture2D" uid="uid://qlq3bi0uhvoy" path="res://assets/Crosshairs/crosshair057.png" id="3_0ejog"]
+[ext_resource type="Resource" uid="uid://b3ntfp87vuptr" path="res://SniperUpgrade.tres" id="3_x0j5d"]
 [ext_resource type="Texture2D" uid="uid://c4jasjnibwa07" path="res://assets/Guns/Icon29_21.png" id="4_0ejog"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rk6qr"]
@@ -28,6 +29,7 @@ reload_time = 7.0
 fire_rate = 1.0
 hip_fire_spread = 30.0
 bullet_scene = ExtResource("2_0ejog")
+upgrade_data = ExtResource("3_x0j5d")
 knockback_force = 500.0
 crosshair_texture = ExtResource("3_0ejog")
 

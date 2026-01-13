@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponUpgradeData" load_steps=2 format=3 uid="uid://b3ntfp87vuptr"]
+
+[ext_resource type="Script" uid="uid://f7hiwo8x2odq" path="res://scripts/hotbox_data.gd" id="1_um1lq"]
+
+[resource]
+script = ExtResource("1_um1lq")
+damage_multiplier = 2.0
+mag_size_bonus = 5
+upgraded_color = Color(0.18385625, 0.91195256, 0.8466276, 1)

@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://yp5i8bh0y0m4"]
+
+[ext_resource type="Script" uid="uid://b2tag2pe87xbu" path="res://scripts/workbench_ui.gd" id="1_6hrtq"]
+[ext_resource type="Texture2D" uid="uid://ogmirytmlfmg" path="res://assets/Drops/Icon14_39.png" id="1_8efqj"]
+[ext_resource type="Texture2D" uid="uid://dm7ba3da1mqh7" path="res://assets/Drops/Icon14_36.png" id="2_6hrtq"]
+[ext_resource type="AudioStream" uid="uid://bsuu5t3wsmsmt" path="res://assets/Audio/anvil-use-minecraft-sound-sound-effect-for-editing.mp3" id="2_o654t"]
+[ext_resource type="Texture2D" uid="uid://cnjtteolej61f" path="res://assets/Drops/Icon14_40.png" id="3_o654t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s4lig"]
+font_size = 40
+font_color = Color(0, 0.95, 0.95, 1)
+
+[node name="WorkbenchUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6hrtq")
+upgrade_sound = ExtResource("2_o654t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.32941177)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "WORKBENCH"
+label_settings = SubResource("LabelSettings_s4lig")
+horizontal_alignment = 1
+
+[node name="FireButton" type="Button" parent="Panel/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 3.41
+theme_override_font_sizes/font_size = 25
+text = "Add Fire Crystal"
+icon = ExtResource("1_8efqj")
+icon_alignment = 2
+
+[node name="BatteryButton" type="Button" parent="Panel/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 3.41
+theme_override_font_sizes/font_size = 25
+text = "Add Battery      "
+icon = ExtResource("2_6hrtq")
+icon_alignment = 2
+
+[node name="NeonButton" type="Button" parent="Panel/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 25
+text = "Add Burning neon"
+icon = ExtResource("3_o654t")
+icon_alignment = 2
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 24
+text = "Close"

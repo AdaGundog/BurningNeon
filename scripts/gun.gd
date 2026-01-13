@@ -16,6 +16,7 @@ extends Area2D
 
 @export_group("Setup")
 @export var bullet_scene: PackedScene
+@export var upgrade_data: WeaponUpgradeData # Drag your .tres file here
 
 @export_group("Combat Settings")
 @export var knockback_force: float = 150 
@@ -23,6 +24,7 @@ extends Area2D
 @export_group("Visuals")
 @export var crosshair_texture: Texture2D 
  
+var is_upgraded: bool = false
 var hud = null 
 var current_ammo: int = 0
 var is_equipped: bool = false
@@ -30,6 +32,8 @@ var can_shoot: bool = true
 var is_reloading: bool = false
 var player_in_range: Node2D = null 
 var is_aiming: bool = false
+
+
 
 func _process(_delta: float) -> void:
 	if is_equipped:
@@ -186,3 +190,40 @@ func drop_weapon(weapon_node):
 	
 	weapon_node.set_deferred("monitoring", true)
 	weapon_node.set_deferred("monitorable", true)
+
+func upgrade_weapon():
+	if is_upgraded or !upgrade_data: return
+	
+	is_upgraded = true
+	
+	# Apply Multipliers
+	fire_rate *= upgrade_data.fire_rate_multiplier
+	base_damage = int(base_damage * upgrade_data.damage_multiplier)
+	
+	# Apply Bonuses
+	mag_size += upgrade_data.mag_size_bonus
+	knockback_force += upgrade_data.knockback_bonus
+	
+	# Update Name and Color
+	modulate = upgrade_data.upgraded_color
+	
+	# Refill Ammo
+	current_ammo = mag_size
+
+func apply_material_bonus(material_type: String):
+	match material_type:
+		"fire_crystal":
+			# Decrease fire_rate (lower is faster)
+			fire_rate = max(0.05, fire_rate * 0.95) 
+		"burning_neon":
+			# Increase damage
+			base_damage += 3
+		"battery":
+			# Increase mag size
+			mag_size += 5
+			current_ammo = mag_size # Refill ammo with the new capacity
+	
+	# Visual flare: flash the gun green to show it worked
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color.GREEN, 0.1)
+	tween.tween_property(self, "modulate", Color.WHITE if !is_upgraded else upgrade_data.upgraded_color, 0.1)

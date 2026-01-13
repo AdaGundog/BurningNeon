@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwitv3j80dktj"]
+
+[ext_resource type="Script" uid="uid://bhak76y1jl7k5" path="res://scenes/items.gd" id="1_l7cgj"]
+[ext_resource type="Texture2D" uid="uid://cnjtteolej61f" path="res://assets/Drops/Icon14_40.png" id="2_1sy7g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wecpe"]
+
+[node name="BurningNeon" type="Area2D"]
+scale = Vector2(1.2247323, 1.0909091)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_l7cgj")
+material_type = "burning_neon"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.49769574, 0.49769574)
+texture = ExtResource("2_1sy7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wecpe")
